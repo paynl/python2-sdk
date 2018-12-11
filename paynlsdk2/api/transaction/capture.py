@@ -2,10 +2,10 @@ import json
 
 from marshmallow import Schema, fields, post_load
 
-from paynlsdk.api.requestbase import RequestBase
-from paynlsdk.api.responsebase import ResponseBase
-from paynlsdk.objects import ErrorSchema
-from paynlsdk.validators import ParamValidator
+from paynlsdk2.api.requestbase import RequestBase
+from paynlsdk2.api.responsebase import ResponseBase
+from paynlsdk2.objects import ErrorSchema
+from paynlsdk2.validators import ParamValidator
 
 
 class Response(ResponseBase):
@@ -105,7 +105,7 @@ class Request(RequestBase):
         Return the API :class:`Response` for the validation request
 
         :return: The API response
-        :rtype: paynlsdk.api.transaction.capture.Response
+        :rtype: paynlsdk2.api.transaction.capture.Response
         """
         return self._response
 

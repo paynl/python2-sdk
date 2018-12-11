@@ -1,11 +1,11 @@
-from paynlsdk.objects import Error
+from paynlsdk2.objects import Error
 
 
 class ResponseBase(object):
     """
     Response base object for the any API call
 
-    :param paynlsdk.objects.Error request: generic API result used to communicate about the status of the call.
+    :param paynlsdk2.objects.Error request: generic API result used to communicate about the status of the call.
         If the call itself failed, this will also contain an error id and message
     """
 

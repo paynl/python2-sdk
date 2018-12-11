@@ -2,10 +2,10 @@ import json
 
 from marshmallow import Schema, fields, post_load
 
-from paynlsdk.api.requestbase import RequestBase
-from paynlsdk.api.responsebase import ResponseBase
-from paynlsdk.objects import Error
-from paynlsdk.validators import ParamValidator
+from paynlsdk2.api.requestbase import RequestBase
+from paynlsdk2.api.responsebase import ResponseBase
+from paynlsdk2.objects import Error
+from paynlsdk2.validators import ParamValidator
 
 
 class Response(ResponseBase):
@@ -46,12 +46,12 @@ class ResponseSchema(Schema):
     def create_response(self, data):
         # type: (dict) -> Response
         """
-        create an instance of the :class:`paynlsdk.api.validate.payserverip.Response` class
+        create an instance of the :class:`paynlsdk2.api.validate.payserverip.Response` class
 
         :param data: dictionary with which the response object can be created
         :type data: dict
         :return: return generated response class
-        :rtype: paynlsdk.api.validate.payserverip.Response
+        :rtype: paynlsdk2.api.validate.payserverip.Response
         """
         return Response(**data)
 
@@ -123,7 +123,7 @@ class Request(RequestBase):
         Return the API :class:`Response` for the validation request
 
         :return: The API response
-        :rtype: paynlsdk.api.validate.payserverip.Response
+        :rtype: paynlsdk2.api.validate.payserverip.Response
         """
         return self._response
 

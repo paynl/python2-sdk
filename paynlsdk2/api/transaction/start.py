@@ -2,11 +2,11 @@ import json
 
 from marshmallow import Schema, fields, pre_load, post_load
 
-from paynlsdk.api.requestbase import RequestBase
-from paynlsdk.api.responsebase import ResponseBase
-from paynlsdk.objects import TransactionData, TransactionStartStatsData, SalesData, TransactionEndUser, ErrorSchema,\
+from paynlsdk2.api.requestbase import RequestBase
+from paynlsdk2.api.responsebase import ResponseBase
+from paynlsdk2.objects import TransactionData, TransactionStartStatsData, SalesData, TransactionEndUser, ErrorSchema,\
     TransactionStartEnduser, TransactionStartEnduserSchema, TransactionStartInfo, TransactionStartInfoSchema
-from paynlsdk.validators import ParamValidator
+from paynlsdk2.validators import ParamValidator
 
 
 class Response(ResponseBase):
@@ -91,7 +91,7 @@ class Request(RequestBase):
                  transfer_type=None,
                  transfer_value=None,
                  ):
-        # type: (int, str, str, int, int, TransactionData, TransactionStartStatsData, TransactionEndUser, SalesData, bool, str, str) -> paynlsdk.api.transaction.start.Response
+        # type: (int, str, str, int, int, TransactionData, TransactionStartStatsData, TransactionEndUser, SalesData, bool, str, str) -> paynlsdk2.api.transaction.start.Response
         self.amount = amount
         self.ip_address = ip_address
         self.finish_url = finish_url
@@ -322,7 +322,7 @@ class Request(RequestBase):
         Return the API :class:`Response` for the validation request
 
         :return: The API response
-        :rtype: paynlsdk.api.transaction.start.Response
+        :rtype: paynlsdk2.api.transaction.start.Response
         """
         return self._response
 

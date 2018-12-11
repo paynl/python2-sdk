@@ -5,9 +5,9 @@ except ImportError:
 
 from abc import ABCMeta, abstractmethod
 
-from paynlsdk.api.responsebase import ResponseBase
-from paynlsdk.exceptions import SchemaException
-from paynlsdk.validators import ParamValidator
+from paynlsdk2.api.responsebase import ResponseBase
+from paynlsdk2.exceptions import SchemaException
+from paynlsdk2.validators import ParamValidator
 
 
 class RequestBase(object):

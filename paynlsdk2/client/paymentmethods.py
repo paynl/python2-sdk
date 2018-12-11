@@ -1,5 +1,5 @@
-from paynlsdk.api.client import APIClient
-from paynlsdk.objects import ServicePaymentProfile
+from paynlsdk2.api.client import APIClient
+from paynlsdk2.objects import ServicePaymentProfile
 
 
 class PaymentMethods(object):
@@ -14,7 +14,7 @@ class PaymentMethods(object):
         :return: List of banks
         :rtype: List[ServicePaymentProfile]
         """
-        from paynlsdk.api.transaction.getservicepaymentoptions import Request
+        from paynlsdk2.api.transaction.getservicepaymentoptions import Request
         client = APIClient()
         request = Request()
         client.perform_request(request)
