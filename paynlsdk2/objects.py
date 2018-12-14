@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from marshmallow import Schema, fields, post_load, pre_load
-from paynlsdk.validators import ParamValidator
+from paynlsdk2.validators import ParamValidator
 
 
 class Error(object):
@@ -290,9 +290,9 @@ class OrderData(object):
         Create instance of Order data details
 
         .. seealso::
-            :class:`paynlsdk.enums.enums.TaxClassCategory` for the :attr:`vat_code` values
+            :class:`paynlsdk2.enums.enums.TaxClassCategory` for the :attr:`vat_code` values
 
-            :class:`paynlsdk.enums.enums.ProductType` for the :attr:`product_type` values
+            :class:`paynlsdk2.enums.enums.ProductType` for the :attr:`product_type` values
 
         :param product_id: Product ID
         :type product_id: str
@@ -347,7 +347,7 @@ class SalesData(object):
         Create instance of SalesData details
 
         .. seealso::
-            :class:`paynlsdk.objects.OrderData` for the order data structure
+            :class:`paynlsdk2.objects.OrderData` for the order data structure
 
         :param invoice_date: invoice date
         :type invoice_date: str
@@ -399,7 +399,7 @@ class Service(object):
         Create Service details instance
 
         .. seealso::
-            :class:`paynlsdk.enums.enums.ActiveState.OrderData` for the state attribute
+            :class:`paynlsdk2.enums.enums.ActiveState.OrderData` for the state attribute
 
         :param id: Service ID
         :type id: str
@@ -563,13 +563,13 @@ class ServicePaymentProfile(object):
     Payment profile details structure
 
     .. seealso::
-        :class:`paynlsdk.objects.CountryId` for usage of the :attr:`countries` attribute
+        :class:`paynlsdk2.objects.CountryId` for usage of the :attr:`countries` attribute
 
-        :class:`paynlsdk.api.transaction.getservicepaymentoptions.Response` for usage
+        :class:`paynlsdk2.api.transaction.getservicepaymentoptions.Response` for usage
 
-        :class:`paynlsdk.client.transaction.get_service_payment_options` for usage
+        :class:`paynlsdk2.client.transaction.get_service_payment_options` for usage
 
-        :class:`paynlsdk.client.paymentmethods.get_list` for usage
+        :class:`paynlsdk2.client.paymentmethods.get_list` for usage
 
     """
     def __init__(self, id=None, name=None, visible_name=None,
@@ -579,13 +579,13 @@ class ServicePaymentProfile(object):
         Create payment profile details
 
         .. seealso::
-            :class:`paynlsdk.objects.CountryId` for usage of the :attr:`countries` attribute
+            :class:`paynlsdk2.objects.CountryId` for usage of the :attr:`countries` attribute
 
-            :class:`paynlsdk.api.transaction.getservicepaymentoptions.Response` for usage
+            :class:`paynlsdk2.api.transaction.getservicepaymentoptions.Response` for usage
 
-            :class:`paynlsdk.client.transaction.get_service_payment_options` for usage
+            :class:`paynlsdk2.client.transaction.get_service_payment_options` for usage
 
-            :class:`paynlsdk.client.paymentmethods.get_list` for usage
+            :class:`paynlsdk2.client.paymentmethods.get_list` for usage
 
         :param id: ID
         :type id: int
@@ -805,7 +805,7 @@ class TransactionStartEnduser(object):
     Transaction start info details structure used at the API response
 
     .. seealso::
-        :class:`paynlsdk.api.transaction.start.Response` for usage details
+        :class:`paynlsdk2.api.transaction.start.Response` for usage details
     """
     def __init__(self, blacklist=None):
         # type: (int) -> None
@@ -813,9 +813,9 @@ class TransactionStartEnduser(object):
         Create transaction start user response structure
 
         .. seealso::
-            :class:`paynlsdk.api.transaction.start.Response` for usage details
+            :class:`paynlsdk2.api.transaction.start.Response` for usage details
 
-            :class:`paynlsdk.enums.enums.Blacklist` for possible *blacklist* values
+            :class:`paynlsdk2.enums.enums.Blacklist` for possible *blacklist* values
 
         :param blacklist: blacklist bit (0, 1 or 2)
         :type blacklist: int
@@ -897,7 +897,7 @@ class TransactionStats(object):
         Transaction stats structure
 
         ..seealso::
-            :class:`paynlsdk.enums.enums.Secure` for *consumer_3d_secure* possible values
+            :class:`paynlsdk2.enums.enums.Secure` for *consumer_3d_secure* possible values
 
         :param id: ID
         :type id: str
@@ -1040,7 +1040,7 @@ class TransactionStartStatsData(object):
     Transaction stats data structure used at API request
 
     .. seealso::
-        :class:`paynlsdk.api.transaction.start.Request` for usage example
+        :class:`paynlsdk2.api.transaction.start.Request` for usage example
     """
     def __init__(self, promotor_id=None, info=None, tool=None,
                  extra1=None, extra2=None, extra3=None, domain_id=None):
@@ -1049,7 +1049,7 @@ class TransactionStartStatsData(object):
         Create stats details instance
 
         .. seealso::
-            :class:`paynlsdk.api.transaction.start.Request` for usage example
+            :class:`paynlsdk2.api.transaction.start.Request` for usage example
 
         :param promotor_id: promotor ID
         :type promotor_id: int
@@ -1301,13 +1301,13 @@ class EndUser(EndUserBase):
         Create EndUser details
 
         .. seealso::
-            :class:`paynlsdk.objects.EndUserBase` for the base structure
+            :class:`paynlsdk2.objects.EndUserBase` for the base structure
 
-            :class:`paynlsdk.objects.PaymentDetails` for the *payment_details* structure
+            :class:`paynlsdk2.objects.PaymentDetails` for the *payment_details* structure
 
-            :class:`paynlsdk.objects.StornoDetails` for the *storno_details* structure
+            :class:`paynlsdk2.objects.StornoDetails` for the *storno_details* structure
 
-            :class:`paynlsdk.objects.StatsDetails` for the *stats_details* structure
+            :class:`paynlsdk2.objects.StatsDetails` for the *stats_details* structure
 
         :param payment_details: Payment details
         :type payment_details: PaymentDetails
@@ -1317,7 +1317,7 @@ class EndUser(EndUserBase):
         :type stats_details: StatsDetails
         :param args: unused
         :type args: list
-        :param kwargs: Any keyword arguments the :class:`paynlsdk.objects.EndUserBase` receives
+        :param kwargs: Any keyword arguments the :class:`paynlsdk2.objects.EndUserBase` receives
         :type kwargs: dict
         """
         self.payment_details = payment_details
@@ -1378,7 +1378,7 @@ class TransactionEndUser(EndUserBase):
         Create TransactionEndUser details
 
         .. seealso::
-            :class:`paynlsdk.objects.EndUserBase` for the base structure
+            :class:`paynlsdk2.objects.EndUserBase` for the base structure
 
         :param access_code: access code
         :type access_code: str
@@ -1386,7 +1386,7 @@ class TransactionEndUser(EndUserBase):
         :type customer_trust: int
         :param args: unused
         :type args: list
-        :param kwargs: Any keyword arguments the :class:`paynlsdk.objects.EndUserBase` receives
+        :param kwargs: Any keyword arguments the :class:`paynlsdk2.objects.EndUserBase` receives
         :type kwargs: dict
         """
         super(TransactionEndUser, self).__init__(**kwargs)
@@ -1686,7 +1686,7 @@ class PaymentOptionBase(object):
         Create Payment option details instance
 
         .. seealso::
-            :class:`paynlsdk.enums.enums.ActiveState` for payment option :attr:`state` values
+            :class:`paynlsdk2.enums.enums.ActiveState` for payment option :attr:`state` values
 
         :param id: ID
         :type id: int
@@ -1723,11 +1723,11 @@ class PaymentSubOption(PaymentOptionBase):
         Create Payment suboption details instance
 
         .. seealso::
-            :func:`paynlsdk.objects.PaymentOptionBase.__init__` for the *kwargs* attribute values
+            :func:`paynlsdk2.objects.PaymentOptionBase.__init__` for the *kwargs* attribute values
 
         :param args: unused
         :type args: list
-        :param kwargs: Any keyword arguments the :class:`paynlsdk.objects.PaymentOptionBase` receives
+        :param kwargs: Any keyword arguments the :class:`paynlsdk2.objects.PaymentOptionBase` receives
         :type kwargs: dict
         """
         super(PaymentSubOption, self).__init__(**kwargs)
@@ -1762,9 +1762,9 @@ class PaymentOption(PaymentOptionBase):
         Create Payment option details instance
 
         .. seealso::
-            :func:`paynlsdk.objects.PaymentOptionBase.__init__` for the *kwargs* attribute values
+            :func:`paynlsdk2.objects.PaymentOptionBase.__init__` for the *kwargs* attribute values
 
-            :class:`paynlsdk.objects.PaymentSubOption` for the *payment_options* type
+            :class:`paynlsdk2.objects.PaymentSubOption` for the *payment_options* type
 
         :param payment_method_id: payment method ID
         :type payment_method_id: int
@@ -1774,7 +1774,7 @@ class PaymentOption(PaymentOptionBase):
         :type payment_sub_options: Dict[int, PaymentSubOption]
         :param args: unused
         :type args: list
-        :param kwargs: Any keyword arguments the :class:`paynlsdk.objects.PaymentOptionBase` receives
+        :param kwargs: Any keyword arguments the :class:`paynlsdk2.objects.PaymentOptionBase` receives
         :type kwargs: dict
         """
         self.payment_method_id = payment_method_id
@@ -1837,7 +1837,7 @@ class CountryOption(object):
         Create country option instance
 
         .. seealso::
-            :class:`paynlsdk.objects.PaymentOption` for payment option details
+            :class:`paynlsdk2.objects.PaymentOption` for payment option details
 
         :param id: ID
         :type id: int

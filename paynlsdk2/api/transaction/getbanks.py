@@ -1,8 +1,8 @@
 import json
 
-from paynlsdk.api.requestbase import RequestBase
-from paynlsdk.api.responsebase import ResponseBase
-from paynlsdk.objects import Error, BankDetails, BankDetailsSchema
+from paynlsdk2.api.requestbase import RequestBase
+from paynlsdk2.api.responsebase import ResponseBase
+from paynlsdk2.objects import Error, BankDetails, BankDetailsSchema
 
 
 class Response(ResponseBase):
@@ -85,7 +85,7 @@ class Request(RequestBase):
         Return the API :class:`Response` for the validation request
 
         :return: The API response
-        :rtype: paynlsdk.api.transaction.getbanks.Response
+        :rtype: paynlsdk2.api.transaction.getbanks.Response
         """
         return self._response
 

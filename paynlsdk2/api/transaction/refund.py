@@ -2,15 +2,15 @@ import json
 
 from marshmallow import Schema, fields, post_load, pre_load
 
-from paynlsdk.api.requestbase import RequestBase
-from paynlsdk.api.responsebase import ResponseBase
-from paynlsdk.objects import ErrorSchema, RefundFailInfoSchema, RefundSuccessInfoSchema
-from paynlsdk.validators import ParamValidator
+from paynlsdk2.api.requestbase import RequestBase
+from paynlsdk2.api.responsebase import ResponseBase
+from paynlsdk2.objects import ErrorSchema, RefundFailInfoSchema, RefundSuccessInfoSchema
+from paynlsdk2.validators import ParamValidator
 
 
 class Response(ResponseBase):
     """
-    Response object for the Refund::transaction API
+    Response object for the Transaction::refund API
 
     :param dict refunded_transactions: refunded transactions information
     :param dict failed_transactions: failed refunds information
@@ -20,12 +20,13 @@ class Response(ResponseBase):
     :param str refund_id: Refund ID. Please note this is NOT guaranteed. Value is only returned for IBAN based payments
     """
     def __init__(self,
-                 refunded_transactions={},  # Should probably be typehinted with Dict[str, RefundSuccessInfoSchema]
-                 failed_transactions={},  # Should probably be typehinted with Dict[str, RefundFailInfoSchema]
+                 refunded_transactions={},
+                 failed_transactions={},
                  amount_refunded=None,
                  description=None,
                  refund_id=None,
                  *args, **kwargs):
+        # type: (dict, dict, dict, int, str, str) -> None
         self.refunded_transactions = refunded_transactions
         self.failed_transactions = failed_transactions
         self.amount_refunded = amount_refunded
@@ -34,9 +35,11 @@ class Response(ResponseBase):
         super(Response, self).__init__(**kwargs)
 
     def __repr__(self):
+        # type: () -> str
         return str(self.__dict__)
 
     def get_refunded_amount(self):
+        # type: () -> float
         """
         Get refunded amount
         :return: refunded amount
@@ -56,6 +59,7 @@ class ResponseSchema(Schema):
 
     @pre_load
     def pre_processor(self, data):
+        # type: (dict) -> dict
         # Again, the API returns an empty string where it SHOULD return null or an empty list.
         if 'refundedTransactions' in data and ParamValidator.is_empty(data['refundedTransactions']):
             data['refundedTransactions'] = []
@@ -104,26 +108,18 @@ class Request(RequestBase):
     :param int amount: refund amount
     :param str description: refunds description
     :param str process_date: process date
-    :param dict products: product info (keys: productid; values: quantity)
-    :param float vat_percentage: vat percentage
-    :param str exchange_url: exchange url
     """
     def __init__(self,
                  transaction_id=None,
                  amount=None,
                  description=None,
                  process_date=None,
-                 products={},
-                 vat_percentage=None,
-                 exchange_url=None,
                  ):
+        # type: (str, int, str, str) -> None
         self.transaction_id = transaction_id
         self.amount = amount
         self.description = description
         self.process_date = process_date
-        self.products = products
-        self.vat_percentage = vat_percentage
-        self.exchange_url = exchange_url
         super(Request, self).__init__()
 
     def requires_api_token(self):
@@ -174,7 +170,6 @@ class Request(RequestBase):
 
     @RequestBase.raw_response.setter
     def raw_response(self, raw_response):
-        # type: (str) -> None
         self._raw_response = raw_response
         # Do error checking.
         rs = json.loads(self.raw_response)
@@ -190,7 +185,7 @@ class Request(RequestBase):
         Return the API :class:`Response` for the validation request
 
         :return: The API response
-        :rtype: paynlsdk.api.refund.transaction.Response
+        :rtype: paynlsdk2.api.refund.transaction.Response
         """
         return self._response
 
@@ -200,6 +195,7 @@ class Request(RequestBase):
         self._response = response
 
     def add_product(self, product_id, quantity):
+        # type: (str, int) -> None
         if product_id in self.products:
             self.products[product_id] += quantity
         else:

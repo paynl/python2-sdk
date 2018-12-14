@@ -2,9 +2,9 @@ import json
 import sys
 import requests
 import base64
-from paynlsdk.api.requestbase import RequestBase
-from paynlsdk.exceptions import ErrorException
-from paynlsdk.validators import ParamValidator
+from paynlsdk2.api.requestbase import RequestBase
+from paynlsdk2.exceptions import ErrorException
+from paynlsdk2.validators import ParamValidator
 
 PAYNL_END_POINT = "https://rest-api.pay.nl"
 PAYNL_CLIENT_VERSION = "1.0.0"
@@ -68,26 +68,26 @@ class APIClient(object):
         """
         Performs the actual call to the API and fill the responses.
 
-        This method will basically verify the given :class:`paynlsdk.api.requestbase.RequestBase` class,
+        This method will basically verify the given :class:`paynlsdk2.api.requestbase.RequestBase` class,
         perform the call to the API, interpret the result and fill the request's
-        :ivar:`paynlsdk.api.requestbase.RequestBase.response`.
+        :ivar:`paynlsdk2.api.requestbase.RequestBase.response`.
         Interpreting the result is done by evaluating the returned JSON using marshmallow.
         When validation is complete, the request class will internally set the response, which is always an instance
-        of a :class:`paynlsdk.api.responsebase.ResponseBase` instance
+        of a :class:`paynlsdk2.api.responsebase.ResponseBase` instance
 
         .. seealso::
-            :class:`paynlsdk.api.requestbase.RequestBase` and all it's derived classes
+            :class:`paynlsdk2.api.requestbase.RequestBase` and all it's derived classes
 
-            :class:`paynlsdk.api.responsebase.ResponseBase` and all it's derived classes
+            :class:`paynlsdk2.api.responsebase.ResponseBase` and all it's derived classes
 
         :param request: the generic request to perform
-        :type request: paynlsdk.api.requestbase.RequestBase
+        :type request: paynlsdk2.api.requestbase.RequestBase
         :param method: HTTP method (stick to POST!)
         :type method: str
         :return: void
         :rtype: void
-        :raise paynlsdk.exceptions.ErrorException: generic error occurred
-        :raise paynlsdk.exceptions.SchemaException: error occurred during result parsing (schema load/validation failure)
+        :raise paynlsdk2.exceptions.ErrorException: generic error occurred
+        :raise paynlsdk2.exceptions.SchemaException: error occurred during result parsing (schema load/validation failure)
         """
         headers = {
           'Accept': 'application/json',

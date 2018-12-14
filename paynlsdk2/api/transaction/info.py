@@ -2,13 +2,13 @@ import json
 
 from marshmallow import Schema, fields, post_load, pre_load
 
-from paynlsdk.api.requestbase import RequestBase
-from paynlsdk.api.responsebase import ResponseBase
-from paynlsdk.objects import ErrorSchema, Connection, ConnectionSchema, EndUser, EndUserSchema,\
+from paynlsdk2.api.requestbase import RequestBase
+from paynlsdk2.api.responsebase import ResponseBase
+from paynlsdk2.objects import ErrorSchema, Connection, ConnectionSchema, EndUser, EndUserSchema,\
     PaymentDetails, PaymentDetailsSchema, StornoDetails, StornoDetailsSchema,\
     SalesData, SalesDataSchema, StatsDetails, StatsDetailsSchema
-from paynlsdk.validators import ParamValidator
-from paynlsdk.exceptions import TransactionStatusException, TransactionNotAuthorizedException
+from paynlsdk2.validators import ParamValidator
+from paynlsdk2.exceptions import TransactionStatusException, TransactionNotAuthorizedException
 
 
 class Response(ResponseBase):
@@ -44,10 +44,10 @@ class Response(ResponseBase):
         """
         Get transaction status
         :return: Response object if transaction.status API
-        :rtype: paynlsdk.api.transaction.status.Response
+        :rtype: paynlsdk2.api.transaction.status.Response
         """
-        from paynlsdk.api.transaction.status import Request
-        from paynlsdk.api.client import APIClient
+        from paynlsdk2.api.transaction.status import Request
+        from paynlsdk2.api.client import APIClient
         client = APIClient()
         request = Request(self.transaction_id)
         client.perform_request(request)
@@ -257,8 +257,8 @@ class Response(ResponseBase):
         """
         if not self.is_being_verified():
             raise TransactionStatusException('Cannot decline transaction because it does not have the status VERIFY')
-        from paynlsdk.api.transaction.approve import Request
-        from paynlsdk.api.client import APIClient
+        from paynlsdk2.api.transaction.approve import Request
+        from paynlsdk2.api.client import APIClient
         client = APIClient()
         request = Request(self.transaction_id)
         client.perform_request(request)
@@ -274,8 +274,8 @@ class Response(ResponseBase):
         """
         if not self.is_being_verified():
             raise TransactionStatusException('Cannot decline transaction because it does not have the status VERIFY')
-        from paynlsdk.api.transaction.decline import Request
-        from paynlsdk.api.client import APIClient
+        from paynlsdk2.api.transaction.decline import Request
+        from paynlsdk2.api.client import APIClient
         client = APIClient()
         request = Request(self.transaction_id)
         client.perform_request(request)
@@ -292,8 +292,8 @@ class Response(ResponseBase):
         if not self.is_authorized():
             raise TransactionNotAuthorizedException('Cannot capture transaction, status is not authorized')
         # We will NOT use the "utility" methds here but the full API implementation
-        from paynlsdk.api.transaction.voidauthorization import Request
-        from paynlsdk.api.client import APIClient
+        from paynlsdk2.api.transaction.voidauthorization import Request
+        from paynlsdk2.api.client import APIClient
         client = APIClient()
         request = Request(self.transaction_id)
         client.perform_request(request)
@@ -310,8 +310,8 @@ class Response(ResponseBase):
         if not self.is_authorized():
             raise TransactionNotAuthorizedException('Cannot capture transaction, status is not authorized')
         # We will NOT use the "utility" methds here but the full API implementation
-        from paynlsdk.api.transaction.capture import Request
-        from paynlsdk.api.client import APIClient
+        from paynlsdk2.api.transaction.capture import Request
+        from paynlsdk2.api.client import APIClient
         client = APIClient()
         request = Request(self.transaction_id)
         client.perform_request(request)
@@ -408,7 +408,7 @@ class Request(RequestBase):
         Return the API :class:`Response` for the validation request
 
         :return: The API response
-        :rtype: paynlsdk.api.transaction.info.Response
+        :rtype: paynlsdk2.api.transaction.info.Response
         """
         return self._response
 

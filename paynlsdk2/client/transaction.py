@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from paynlsdk.api.client import APIClient
-from paynlsdk.objects import TransactionData, TransactionStartStatsData, SalesData, TransactionEndUser, BankDetails
+from paynlsdk2.api.client import APIClient
+from paynlsdk2.objects import TransactionData, TransactionStartStatsData, SalesData, TransactionEndUser, BankDetails
 
 
 class Transaction(object):
@@ -79,7 +79,7 @@ class Transaction(object):
         :return: List of banks
         :rtype: List[BankDetails]
         """
-        from paynlsdk.api.transaction.getbanks import Request
+        from paynlsdk2.api.transaction.getbanks import Request
         client = APIClient()
         request = Request()
         client.perform_request(request)
@@ -87,37 +87,37 @@ class Transaction(object):
 
     @staticmethod
     def get_service(payment_method_id):
-        # type: (int) -> paynlsdk.api.transaction.getservice.Response
+        # type: (int) -> paynlsdk2.api.transaction.getservice.Response
         """
-        Get a transaction getservice :class:`paynlsdk.api.transaction.getservice.Response` instance
+        Get a transaction getservice :class:`paynlsdk2.api.transaction.getservice.Response` instance
 
         Please note this is a mapping to the :meth:`Transaction.get_service_response` method and is here for consistency
 
         :return: Transaction getservice response instance
-        :rtype: paynlsdk.api.transaction.getservice.Response
+        :rtype: paynlsdk2.api.transaction.getservice.Response
         """
         return Transaction.get_service_response(payment_method_id)
 
     @staticmethod
     def get_service_payment_options(payment_method_id=None):
-        # type: (int) -> paynlsdk.api.transaction.getservicepaymentoptions.Response
+        # type: (int) -> paynlsdk2.api.transaction.getservicepaymentoptions.Response
         """
-        Get a transaction getservicepaymentoptions :class:`paynlsdk.api.transaction.getservicepaymentoptions.Response` instance
+        Get a transaction getservicepaymentoptions :class:`paynlsdk2.api.transaction.getservicepaymentoptions.Response` instance
 
         Please note this is a mapping to the :meth:`Transaction.get_service_payment_options_response` method and is here for consistency
 
         :param payment_method_id: payment method ID
         :type payment_method_id: int
         :return: Transaction getservicepaymentoptions response instance
-        :rtype: paynlsdk.api.transaction.getservicepaymentoptions.Response
+        :rtype: paynlsdk2.api.transaction.getservicepaymentoptions.Response
         """
         return Transaction.get_service_payment_options_response(payment_method_id)
 
     @staticmethod
     def info(transaction_id, entrance_code=None):
-        # type: (str, str) -> paynlsdk.api.transaction.info.Response
+        # type: (str, str) -> paynlsdk2.api.transaction.info.Response
         """
-        Get a transaction info :class:`paynlsdk.api.transaction.info.Response` instance
+        Get a transaction info :class:`paynlsdk2.api.transaction.info.Response` instance
 
         Please note this is a mapping to the :meth:`Transaction.info_response` method and is here for consistency
 
@@ -126,13 +126,13 @@ class Transaction(object):
         :param entrance_code: entrance code
         :type entrance_code: str
         :return: Transaction info response instance
-        :rtype: paynlsdk.api.transaction.info.Response
+        :rtype: paynlsdk2.api.transaction.info.Response
         """
         return Transaction.info_response(transaction_id, entrance_code)
 
     @staticmethod
     def status(transaction_id):
-        # type: (str) -> paynlsdk.api.transaction.status.Response
+        # type: (str) -> paynlsdk2.api.transaction.status.Response
         """
         Get transaction status
 
@@ -141,13 +141,13 @@ class Transaction(object):
         :param transaction_id: transaction ID
         :type transaction_id: str
         :return: transaction status
-        :rtype: paynlsdk.api.transaction.status.Response
+        :rtype: paynlsdk2.api.transaction.status.Response
         """
         return Transaction.status_response(transaction_id)
 
     @staticmethod
     def refund(transaction_id, amount=None, description=None, process_date=None):
-        # type: (str, int, str, str) -> paynlsdk.api.transaction.refund.Response
+        # type: (str, int, str, str) -> paynlsdk2.api.transaction.refund.Response
         """
         Refund (part of) a transaction
 
@@ -161,7 +161,7 @@ class Transaction(object):
                 TODO: this *should* be a datetime
         :type process_date: str
         :return: refund result
-        :rtype: paynlsdk.api.transaction.refund.Response
+        :rtype: paynlsdk2.api.transaction.refund.Response
         """
         return Transaction.refund_response(transaction_id, amount, description, process_date)
 
@@ -179,9 +179,9 @@ class Transaction(object):
               transfer_type=None,
               transfer_value=None
               ):
-        # type: (int, str, str, int, int, TransactionData, TransactionStartStatsData, TransactionEndUser, SalesData, bool, str, str) -> paynlsdk.api.transaction.start.Response
+        # type: (int, str, str, int, int, TransactionData, TransactionStartStatsData, TransactionEndUser, SalesData, bool, str, str) -> paynlsdk2.api.transaction.start.Response
         """
-        Get a transaction start :class:`paynlsdk.api.transaction.start.Response` instance
+        Get a transaction start :class:`paynlsdk2.api.transaction.start.Response` instance
 
         Please note this is a mapping to the :meth:`Transaction.start_response` method and is here for consistency
 
@@ -211,136 +211,136 @@ class Transaction(object):
         :param transfer_value: Merchant ID (M-xxxx-xxxx) or order ID
         :type transfer_value: str
         :return: Transaction start response instance
-        :rtype: paynlsdk.api.transaction.start.Response
+        :rtype: paynlsdk2.api.transaction.start.Response
         """
         return Transaction.start_response(amount, ip_address, finish_url, payment_option_id, payment_option_sub_id,
                           transaction, stats_data, end_user, sale_data, test_mode, transfer_type, transfer_value)
 
     @staticmethod
     def approve_request():
-        # type: () -> paynlsdk.api.transaction.approve.Request
+        # type: () -> paynlsdk2.api.transaction.approve.Request
         """
-        Get a transaction approve :class:`paynlsdk.api.transaction.approve.Request` instance
+        Get a transaction approve :class:`paynlsdk2.api.transaction.approve.Request` instance
 
         :return: Transaction approve request instance
-        :rtype: paynlsdk.api.transaction.approve.Request
+        :rtype: paynlsdk2.api.transaction.approve.Request
         """
-        from paynlsdk.api.transaction.approve import Request
+        from paynlsdk2.api.transaction.approve import Request
         return Request()
 
     @staticmethod
     def decline_request():
-        # type: () -> paynlsdk.api.transaction.decline.Request
+        # type: () -> paynlsdk2.api.transaction.decline.Request
         """
-        Get a transaction decline :class:`paynlsdk.api.transaction.decline.Request` instance
+        Get a transaction decline :class:`paynlsdk2.api.transaction.decline.Request` instance
 
         :return: Transaction decline request instance
-        :rtype: paynlsdk.api.transaction.decline.Request
+        :rtype: paynlsdk2.api.transaction.decline.Request
         """
-        from paynlsdk.api.transaction.decline import Request
+        from paynlsdk2.api.transaction.decline import Request
         return Request()
 
     @staticmethod
     def capture_request():
-        # type: () -> paynlsdk.api.transaction.capture.Request
+        # type: () -> paynlsdk2.api.transaction.capture.Request
         """
-        Get a transaction capture :class:`paynlsdk.api.transaction.capture.Request` instance
+        Get a transaction capture :class:`paynlsdk2.api.transaction.capture.Request` instance
 
         :return: Transaction capture request instance
-        :rtype: paynlsdk.api.transaction.capture.Request
+        :rtype: paynlsdk2.api.transaction.capture.Request
         """
-        from paynlsdk.api.transaction.capture import Request
+        from paynlsdk2.api.transaction.capture import Request
         return Request()
 
     @staticmethod
     def void_request():
-        # type: () -> paynlsdk.api.transaction.voidauthorization.Request
+        # type: () -> paynlsdk2.api.transaction.voidauthorization.Request
         """
-        Get a transaction void :class:`paynlsdk.api.transaction.voidauthorization.Request` instance
+        Get a transaction void :class:`paynlsdk2.api.transaction.voidauthorization.Request` instance
 
         :return: Transaction void request instance
-        :rtype: paynlsdk.api.transaction.voidauthorization.Request
+        :rtype: paynlsdk2.api.transaction.voidauthorization.Request
         """
-        from paynlsdk.api.transaction.voidauthorization import Request
+        from paynlsdk2.api.transaction.voidauthorization import Request
         return Request()
 
     @staticmethod
     def get_banks_request():
-        # type: () -> paynlsdk.api.transaction.getbanks.Request
+        # type: () -> paynlsdk2.api.transaction.getbanks.Request
         """
-        Get a transaction getbanks :class:`paynlsdk.api.transaction.getbanks.Request` instance
+        Get a transaction getbanks :class:`paynlsdk2.api.transaction.getbanks.Request` instance
 
         :return: Transaction getbanks request instance
-        :rtype: paynlsdk.api.transaction.getbanks.Request
+        :rtype: paynlsdk2.api.transaction.getbanks.Request
         """
-        from paynlsdk.api.transaction.getbanks import Request
+        from paynlsdk2.api.transaction.getbanks import Request
         return Request()
 
     @staticmethod
     def get_service_request():
-        # type: () -> paynlsdk.api.transaction.getservice.Request
+        # type: () -> paynlsdk2.api.transaction.getservice.Request
         """
-        Get a transaction getservice :class:`paynlsdk.api.transaction.getservice.Request` instance
+        Get a transaction getservice :class:`paynlsdk2.api.transaction.getservice.Request` instance
 
         :return: Transaction getservice request instance
-        :rtype: paynlsdk.api.transaction.getservice.Request
+        :rtype: paynlsdk2.api.transaction.getservice.Request
         """
-        from paynlsdk.api.transaction.getservice import Request
+        from paynlsdk2.api.transaction.getservice import Request
         return Request()
 
     @staticmethod
     def info_request():
-        # type: () -> paynlsdk.api.transaction.info.Request
+        # type: () -> paynlsdk2.api.transaction.info.Request
         """
-        Get a transaction info :class:`paynlsdk.api.transaction.info.Request` instance
+        Get a transaction info :class:`paynlsdk2.api.transaction.info.Request` instance
 
         :return: Transaction info request instance
-        :rtype: paynlsdk.api.transaction.info.Request
+        :rtype: paynlsdk2.api.transaction.info.Request
         """
-        from paynlsdk.api.transaction.info import Request
+        from paynlsdk2.api.transaction.info import Request
         return Request()
 
     @staticmethod
     def status_request():
-        # type: () -> paynlsdk.api.transaction.status.Request
+        # type: () -> paynlsdk2.api.transaction.status.Request
         """
-        Get a transaction status :class:`paynlsdk.api.transaction.status.Request` instance
+        Get a transaction status :class:`paynlsdk2.api.transaction.status.Request` instance
 
         :return: Transaction status request instance
-        :rtype: paynlsdk.api.transaction.status.Request
+        :rtype: paynlsdk2.api.transaction.status.Request
         """
-        from paynlsdk.api.transaction.status import Request
+        from paynlsdk2.api.transaction.status import Request
         return Request()
 
     @staticmethod
     def refund_request():
-        # type: () -> paynlsdk.api.transaction.refund.Request
+        # type: () -> paynlsdk2.api.transaction.refund.Request
         """
-        Get a transaction refund :class:`paynlsdk.api.transaction.refund.Request` instance
+        Get a transaction refund :class:`paynlsdk2.api.transaction.refund.Request` instance
 
         :return: Transaction refund request instance
-        :rtype: paynlsdk.api.transaction.refund.Request
+        :rtype: paynlsdk2.api.transaction.refund.Request
         """
-        from paynlsdk.api.transaction.refund import Request
+        from paynlsdk2.api.transaction.refund import Request
         return Request()
 
     @staticmethod
     def start_request():
-        # type: () -> paynlsdk.api.transaction.start.Request
+        # type: () -> paynlsdk2.api.transaction.start.Request
         """
-        Get a transaction start :class:`paynlsdk.api.transaction.start.Request` instance
+        Get a transaction start :class:`paynlsdk2.api.transaction.start.Request` instance
 
         :return: Transaction start request instance
-        :rtype: paynlsdk.api.transaction.start.Request
+        :rtype: paynlsdk2.api.transaction.start.Request
         """
-        from paynlsdk.api.transaction.start import Request
+        from paynlsdk2.api.transaction.start import Request
         return Request()
 
     @staticmethod
     def approve_response(order_id, entrance_code=None):
-        # type: (str, str) -> paynlsdk.api.transaction.approve.Response
+        # type: (str, str) -> paynlsdk2.api.transaction.approve.Response
         """
-        Get a transaction approve :class:`paynlsdk.api.transaction.approve.Response` instance
+        Get a transaction approve :class:`paynlsdk2.api.transaction.approve.Response` instance
 
         Please note this will immediately call the API, returning the response instance
 
@@ -349,9 +349,9 @@ class Transaction(object):
         :param entrance_code: entrance code
         :type entrance_code: str
         :return: Transaction approve response instance
-        :rtype: paynlsdk.api.transaction.approve.Response
+        :rtype: paynlsdk2.api.transaction.approve.Response
         """
-        from paynlsdk.api.transaction.approve import Request
+        from paynlsdk2.api.transaction.approve import Request
         client = APIClient()
         request = Request(order_id, entrance_code)
         client.perform_request(request)
@@ -359,9 +359,9 @@ class Transaction(object):
 
     @staticmethod
     def decline_response(order_id, entrance_code=None):
-        # type: (str, str) -> paynlsdk.api.transaction.decline.Response
+        # type: (str, str) -> paynlsdk2.api.transaction.decline.Response
         """
-        Get a transaction decline :class:`paynlsdk.api.transaction.decline.Response` instance
+        Get a transaction decline :class:`paynlsdk2.api.transaction.decline.Response` instance
 
         Please note this will immediately call the API, returning the response instance
 
@@ -370,9 +370,9 @@ class Transaction(object):
         :param entrance_code: entrance code
         :type entrance_code: str
         :return: Transaction decline response instance
-        :rtype: paynlsdk.api.transaction.decline.Response
+        :rtype: paynlsdk2.api.transaction.decline.Response
         """
-        from paynlsdk.api.transaction.decline import Request
+        from paynlsdk2.api.transaction.decline import Request
         client = APIClient()
         request = Request(order_id, entrance_code)
         client.perform_request(request)
@@ -380,9 +380,9 @@ class Transaction(object):
 
     @staticmethod
     def capture_response(transaction_id, products={}, tracktrace=None):
-        # type: (str, dict, str) -> paynlsdk.api.transaction.capture.Response
+        # type: (str, dict, str) -> paynlsdk2.api.transaction.capture.Response
         """
-        Get a transaction void :class:`paynlsdk.api.transaction.capture.Response` instance
+        Get a transaction void :class:`paynlsdk2.api.transaction.capture.Response` instance
 
         Please note this will immediately call the API, returning the response instance
 
@@ -394,9 +394,9 @@ class Transaction(object):
                 Some payment methods require proof of shipment. Provide the Track&Trace code if available/applicable
         :type tracktrace: str
         :return: Transaction capture response instance
-        :rtype: paynlsdk.api.transaction.capture.Response
+        :rtype: paynlsdk2.api.transaction.capture.Response
         """
-        from paynlsdk.api.transaction.capture import Request
+        from paynlsdk2.api.transaction.capture import Request
         client = APIClient()
         request = Request(transaction_id, products, tracktrace)
         client.perform_request(request)
@@ -404,18 +404,18 @@ class Transaction(object):
 
     @staticmethod
     def void_response(transaction_id):
-        # type: (str) -> paynlsdk.api.transaction.voidauthorization.Response
+        # type: (str) -> paynlsdk2.api.transaction.voidauthorization.Response
         """
-        Get a transaction void :class:`paynlsdk.api.transaction.voidauthorization.Response` instance
+        Get a transaction void :class:`paynlsdk2.api.transaction.voidauthorization.Response` instance
 
         Please note this will immediately call the API, returning the response instance
 
         :param transaction_id: transaction ID
         :type transaction_id: str
         :return: Transaction void response instance
-        :rtype: paynlsdk.api.transaction.voidauthorization.Response
+        :rtype: paynlsdk2.api.transaction.voidauthorization.Response
         """
-        from paynlsdk.api.transaction.voidauthorization import Request
+        from paynlsdk2.api.transaction.voidauthorization import Request
         client = APIClient()
         request = Request(transaction_id)
         client.perform_request(request)
@@ -423,16 +423,16 @@ class Transaction(object):
 
     @staticmethod
     def get_banks_response():
-        # type: () -> paynlsdk.api.transaction.getbanks.Response
+        # type: () -> paynlsdk2.api.transaction.getbanks.Response
         """
-        Get a transaction getbanks :class:`paynlsdk.api.transaction.getbanks.Response` instance
+        Get a transaction getbanks :class:`paynlsdk2.api.transaction.getbanks.Response` instance
 
         Please note this will immediately call the API, returning the response instance
 
         :return: Transaction getbanks response instance
-        :rtype: paynlsdk.api.transaction.getbanks.Response
+        :rtype: paynlsdk2.api.transaction.getbanks.Response
         """
-        from paynlsdk.api.transaction.getbanks import Request
+        from paynlsdk2.api.transaction.getbanks import Request
         client = APIClient()
         request = Request()
         client.perform_request(request)
@@ -440,16 +440,16 @@ class Transaction(object):
 
     @staticmethod
     def get_service_response(payment_method_id):
-        # type: (str) -> paynlsdk.api.transaction.getservice.Response
+        # type: (str) -> paynlsdk2.api.transaction.getservice.Response
         """
-        Get a transaction getservice :class:`paynlsdk.api.transaction.getservice.Response` instance
+        Get a transaction getservice :class:`paynlsdk2.api.transaction.getservice.Response` instance
 
         Please note this will immediately call the API, returning the response instance
 
         :return: Transaction getservice response instance
-        :rtype: paynlsdk.api.transaction.getservice.Response
+        :rtype: paynlsdk2.api.transaction.getservice.Response
         """
-        from paynlsdk.api.transaction.getservice import Request
+        from paynlsdk2.api.transaction.getservice import Request
         client = APIClient()
         request = Request(payment_method_id)
         client.perform_request(request)
@@ -457,18 +457,18 @@ class Transaction(object):
 
     @staticmethod
     def get_service_payment_options_response(payment_method_id=None):
-        # type: (int) -> paynlsdk.api.transaction.getservicepaymentoptions.Response
+        # type: (int) -> paynlsdk2.api.transaction.getservicepaymentoptions.Response
         """
-        Get a transaction getservicepaymentoptions :class:`paynlsdk.api.transaction.getservicepaymentoptions.Response` instance
+        Get a transaction getservicepaymentoptions :class:`paynlsdk2.api.transaction.getservicepaymentoptions.Response` instance
 
         Please note this will immediately call the API, returning the response instance
 
         :param payment_method_id: payment method ID
         :type payment_method_id: int
         :return: Transaction getservicepaymentoptions response instance
-        :rtype: paynlsdk.api.transaction.getservicepaymentoptions.Response
+        :rtype: paynlsdk2.api.transaction.getservicepaymentoptions.Response
         """
-        from paynlsdk.api.transaction.getservicepaymentoptions import Request
+        from paynlsdk2.api.transaction.getservicepaymentoptions import Request
         client = APIClient()
         request = Request(payment_method_id)
         client.perform_request(request)
@@ -476,9 +476,9 @@ class Transaction(object):
 
     @staticmethod
     def info_response(transaction_id, entrance_code=None):
-        # type: (str, str) -> paynlsdk.api.transaction.info.Response
+        # type: (str, str) -> paynlsdk2.api.transaction.info.Response
         """
-        Get a transaction info :class:`paynlsdk.api.transaction.info.Response` instance
+        Get a transaction info :class:`paynlsdk2.api.transaction.info.Response` instance
 
         Please note this will immediately call the API, returning the response instance
 
@@ -487,9 +487,9 @@ class Transaction(object):
         :param entrance_code: entrance code
         :type entrance_code: str
         :return: Transaction info response instance
-        :rtype: paynlsdk.api.transaction.info.Response
+        :rtype: paynlsdk2.api.transaction.info.Response
         """
-        from paynlsdk.api.transaction.info import Request
+        from paynlsdk2.api.transaction.info import Request
         client = APIClient()
         request = Request(transaction_id, entrance_code)
         client.perform_request(request)
@@ -497,18 +497,18 @@ class Transaction(object):
 
     @staticmethod
     def status_response(transaction_id):
-        # type: (str) -> paynlsdk.api.transaction.status.Response
+        # type: (str) -> paynlsdk2.api.transaction.status.Response
         """
-        Get a transaction status :class:`paynlsdk.api.transaction.status.Response` instance
+        Get a transaction status :class:`paynlsdk2.api.transaction.status.Response` instance
 
         Please note this will immediately call the API, returning the response instance
 
         :param transaction_id: transaction ID
         :type transaction_id: str
         :return: Transaction status response instance
-        :rtype: paynlsdk.api.transaction.status.Response
+        :rtype: paynlsdk2.api.transaction.status.Response
         """
-        from paynlsdk.api.transaction.status import Request
+        from paynlsdk2.api.transaction.status import Request
         client = APIClient()
         request = Request(transaction_id)
         client.perform_request(request)
@@ -516,9 +516,9 @@ class Transaction(object):
 
     @staticmethod
     def refund_response(transaction_id, amount=None, description=None, process_date=None):
-        # type: (str, int, str, str) -> paynlsdk.api.transaction.refund.Response
+        # type: (str, int, str, str) -> paynlsdk2.api.transaction.refund.Response
         """
-        Get a transaction refund :class:`paynlsdk.api.transaction.refund.Response` instance
+        Get a transaction refund :class:`paynlsdk2.api.transaction.refund.Response` instance
 
         Please note this will immediately call the API, returning the response instance
 
@@ -532,9 +532,9 @@ class Transaction(object):
                 TODO: this *should* be a datetime
         :type process_date: str
         :return: transaction status
-        :rtype: paynlsdk.api.transaction.refund.Response
+        :rtype: paynlsdk2.api.transaction.refund.Response
         """
-        from paynlsdk.api.transaction.refund import Request
+        from paynlsdk2.api.transaction.refund import Request
         client = APIClient()
         request = Request(transaction_id, amount, description, process_date)
         client.perform_request(request)
@@ -554,9 +554,9 @@ class Transaction(object):
               transfer_type=None,
               transfer_value=None
               ):
-        # type: (int, str, str, int, int, TransactionData, TransactionStartStatsData, TransactionEndUser, SalesData, bool, str, str) -> paynlsdk.api.transaction.start.Response
+        # type: (int, str, str, int, int, TransactionData, TransactionStartStatsData, TransactionEndUser, SalesData, bool, str, str) -> paynlsdk2.api.transaction.start.Response
         """
-        Get a transaction start :class:`paynlsdk.api.transaction.start.Response` instance
+        Get a transaction start :class:`paynlsdk2.api.transaction.start.Response` instance
 
         Please note this will immediately call the API, returning the response instance
 
@@ -586,9 +586,9 @@ class Transaction(object):
         :param transfer_value: Merchant ID (M-xxxx-xxxx) or order ID
         :type transfer_value: str
         :return: Transaction start response instance
-        :rtype: paynlsdk.api.transaction.start.Response
+        :rtype: paynlsdk2.api.transaction.start.Response
         """
-        from paynlsdk.api.transaction.start import Request
+        from paynlsdk2.api.transaction.start import Request
         client = APIClient()
         request = Request(amount, ip_address, finish_url, payment_option_id, payment_option_sub_id,
                           transaction, stats_data, end_user, sale_data, test_mode, transfer_type, transfer_value)

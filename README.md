@@ -19,7 +19,7 @@ For more information on how to use/install pip, please visit: [https://pypi.org/
 
 To install the Pay.nl Python sdk into your project, simply
 
-	$ pip install paynlsdk
+	$ pip install paynlsdk2
 
 ### Requirements
 
@@ -31,30 +31,30 @@ Not all function arguments will be completely described for every case.
 When using the utility/quick start classes all parameters are available, so take a look at the method arguments there for more options.
 They are basically self explanatory
 
-Every API implementation has it's own Request and Response class, which can be found in the various *paynlsdk.api.xxx.yyy* modules.
+Every API implementation has it's own Request and Response class, which can be found in the various *paynlsdk2.api.xxx.yyy* modules.
 Every one of the modules contain at least a Request and a Response class.
-For example, the Transaction.info API can be located in the *paynlsdk.api.transation.info* module and will contain both a
-*paynlsdk.api.transaction.info.Request* and a *paynlsdk.api.transaction.info.Response* class 
+For example, the Transaction.info API can be located in the *paynlsdk2.api.transation.info* module and will contain both a
+*paynlsdk2.api.transaction.info.Request* and a *paynlsdk2.api.transaction.info.Response* class 
 Usually these modules will also contain a specific (marshmallow) Schema implementation that defines the response mapping from JSON. 
 
 For every call, a response object will be returned.
-Using the *print(result)* statement, or by investigating the *paynlsdk.objects* module, you can find out what attributes are available.
+Using the *print(result)* statement, or by investigating the *paynlsdk2.objects* module, you can find out what attributes are available.
 Every result will contain a *request* object, which essentially gives insight on the success or failure of the request.
 This object is also used to throw a *paynlsk.exceptions.ErrorException* in case the request failed.
 The rest of the *response* object will contain the information as returned by the PAYL API
 
-Again, refer to the *paynlsdk.objects* module to investigate the various objects contained in the response.
-The exact contents of the response objects itself are defined in all the *paynlsdk.api.xxx.yyy.Response* classes
+Again, refer to the *paynlsdk2.objects* module to investigate the various objects contained in the response.
+The exact contents of the response objects itself are defined in all the *paynlsdk2.api.xxx.yyy.Response* classes
 
 
 
 ### Quick start and examples
 Do note this quick start only makes use of the quick-call utility methods.
-If you're more familiar with Python, you *could* use the full API request/response implementations in the paynlsdk.api namespace
+If you're more familiar with Python, you *could* use the full API request/response implementations in the paynlsdk2.api namespace
 
 Set configuration (this is a MUST and should always be done before doing anything with the SDK)
 ```
-from paynlsdk.api.client import APIAuthentication
+from paynlsdk2.api.client import APIAuthentication
 APIAuthentication.service_id = 'SL-xxxx-xxxx'
 APIAuthentication.api_token = '<yourtokenhere>'
 APIAuthentication.token_code = 'AT-xxxx-xxxx'
@@ -64,16 +64,16 @@ Turn on debugging output for the API Client
 Note: this uses "print" and will cause a dump of relevant information to the console such as the endpoint, 
 HTTP method, request parameters, http headers and the raw response as a result from the API call
 ```
-from paynlsdk.api.client import APIClient
+from paynlsdk2.api.client import APIClient
 APIClient.print_debug = True
 ```
 
 Get banks (ideal banks only)
 ```python
 # Import needed modules
-from paynlsdk.api.client import APIAuthentication
-from paynlsdk.client.transaction import Transaction
-from paynlsdk.exceptions import *
+from paynlsdk2.api.client import APIAuthentication
+from paynlsdk2.client.transaction import Transaction
+from paynlsdk2.exceptions import *
 # Set mandatory basics
 APIAuthentication.service_id = 'SL-xxxx-xxxx'
 APIAuthentication.api_token = '<yourtokenhere>'
@@ -95,9 +95,9 @@ except Exception as e:
 Get list of payment methods
 ```python
 # Import needed modules
-from paynlsdk.api.client import APIAuthentication
-from paynlsdk.client.paymentmethods import PaymentMethods
-from paynlsdk.exceptions import *
+from paynlsdk2.api.client import APIAuthentication
+from paynlsdk2.client.paymentmethods import PaymentMethods
+from paynlsdk2.exceptions import *
 # Set mandatory basics
 APIAuthentication.service_id = 'SL-xxxx-xxxx'
 APIAuthentication.api_token = '<yourtokenhere>'
@@ -120,9 +120,9 @@ except Exception as e:
 Retrieving transaction info
 ```python
 # Import needed modules
-from paynlsdk.api.client import APIAuthentication
-from paynlsdk.client.transaction import Transaction
-from paynlsdk.exceptions import *
+from paynlsdk2.api.client import APIAuthentication
+from paynlsdk2.client.transaction import Transaction
+from paynlsdk2.exceptions import *
 # Set mandatory basics
 APIAuthentication.service_id = 'SL-xxxx-xxxx'
 APIAuthentication.api_token = '<yourtokenhere>'
@@ -143,9 +143,9 @@ except Exception as e:
 Retrieving transaction status 
 ```python
 # Import needed modules
-from paynlsdk.api.client import APIAuthentication
-from paynlsdk.client.transaction import Transaction
-from paynlsdk.exceptions import *
+from paynlsdk2.api.client import APIAuthentication
+from paynlsdk2.client.transaction import Transaction
+from paynlsdk2.exceptions import *
 # Set mandatory basics
 APIAuthentication.service_id = 'SL-xxxx-xxxx'
 APIAuthentication.api_token = '<yourtokenhere>'
@@ -167,9 +167,9 @@ except Exception as e:
 Refunding (part of) a transaction
 ```python
 # Import needed modules
-from paynlsdk.api.client import APIAuthentication
-from paynlsdk.client.transaction import Transaction
-from paynlsdk.exceptions import *
+from paynlsdk2.api.client import APIAuthentication
+from paynlsdk2.client.transaction import Transaction
+from paynlsdk2.exceptions import *
 # Set mandatory basics
 APIAuthentication.service_id = 'SL-xxxx-xxxx'
 APIAuthentication.api_token = '<yourtokenhere>'
@@ -194,9 +194,9 @@ except Exception as e:
 Refunding (part of) a transaction (alternative method: more request options are available in this API).
 ```python
 # Import needed modules
-from paynlsdk.api.client import APIAuthentication
-from paynlsdk.client.refund import Refund
-from paynlsdk.exceptions import *
+from paynlsdk2.api.client import APIAuthentication
+from paynlsdk2.client.refund import Refund
+from paynlsdk2.exceptions import *
 # Set mandatory basics
 APIAuthentication.service_id = 'SL-xxxx-xxxx'
 APIAuthentication.api_token = '<yourtokenhere>'
@@ -222,9 +222,9 @@ Retrieving refund info
 Note: refund ids come in the form of 'RF-xxxx-xxxx'
 ```python
 # Import needed modules
-from paynlsdk.api.client import APIAuthentication
-from paynlsdk.client.refund import Refund
-from paynlsdk.exceptions import *
+from paynlsdk2.api.client import APIAuthentication
+from paynlsdk2.client.refund import Refund
+from paynlsdk2.exceptions import *
 # Set mandatory basics
 APIAuthentication.service_id = 'SL-xxxx-xxxx'
 APIAuthentication.api_token = '<yourtokenhere>'
@@ -245,11 +245,11 @@ except Exception as e:
 Starting a transaction
 ```python
 # Import needed modules
-from paynlsdk.api.client import APIAuthentication
-from paynlsdk.client.transaction import Transaction
-from paynlsdk.objects import OrderData, Address, Company, datetime, TransactionEndUser,\
+from paynlsdk2.api.client import APIAuthentication
+from paynlsdk2.client.transaction import Transaction
+from paynlsdk2.objects import OrderData, Address, Company, datetime, TransactionEndUser,\
     TransactionStartStatsData, TransactionData, SalesData
-from paynlsdk.exceptions import *
+from paynlsdk2.exceptions import *
 # Set mandatory basics
 APIAuthentication.service_id = 'SL-xxxx-xxxx'
 APIAuthentication.api_token = '<yourtokenhere>'
@@ -303,19 +303,19 @@ except Exception as e:
 ### Error handling
 You should always wrap your calls in an exception handler.
 The SDK only contains four internal exceptions:
-- paynlsdk.exceptions.ErrorException
+- paynlsdk2.exceptions.ErrorException
 
   If, for any reason, an error arises in the communication or internally in the API, this exception will be thrown
-- paynlsdk.exceptions.SchemaException
+- paynlsdk2.exceptions.SchemaException
 
   If, for any reason, the schema mapping (using marshmallow), shall fail , this exception is thrown
 
-- paynlsdk.exceptions.TransactionNotAuthorizedException
+- paynlsdk2.exceptions.TransactionNotAuthorizedException
 
   This exception is only thrown whenever you try to _void_ or _capture_ a transaction using the Response instance as a
   result of a call to Transaction.info()
 
-- paynlsdk.exceptions.TransactionStatusException
+- paynlsdk2.exceptions.TransactionStatusException
 
   This exception is only thrown whenever you try to _approve_ or _decline_ a transaction using the Response instance as a
   result of a call to Transaction.info()
@@ -325,14 +325,14 @@ These are most likely to happen outside of the SDK but should also be handled.
 
 ### Advanced usage
 Whenever you want to make use of the Request and Response objects yourself for any purpose, you always have the option
-of creating the request object for any API call. These can be found in any of the paynlsdk.api.xxx.yyy modules.
+of creating the request object for any API call. These can be found in any of the paynlsdk2.api.xxx.yyy modules.
 This gives you the advantage of being able to get to the raw requests parameters as well as the raw responses as 
 returned by Pay.nl.
 Although you shouldn't normally need to, below is a complete example of this
 ```python
 import json
-from paynlsdk.api.transaction.info import Request
-from paynlsdk.api.client import APIAuthentication, APIClient
+from paynlsdk2.api.transaction.info import Request
+from paynlsdk2.api.client import APIAuthentication, APIClient
 
 APIAuthentication.service_id = 'SL-xxxx-xxxx'
 APIAuthentication.api_token = '<yourtokenhere>'
