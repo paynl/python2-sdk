@@ -11,19 +11,19 @@
 
 ### Installation
 
-This SDK can be installed through pip.
+This Python2 version of the SDK can be installed through pip.
 
 Pip is the package manager for Python.
 
 For more information on how to use/install pip, please visit: [https://pypi.org/project/pip/](https://pypi.org/project/pip/)
 
-To install the Pay.nl Python sdk into your project, simply
+To install the Pay.nl Python2 sdk into your project, simply
 
 	$ pip install paynlsdk2
 
 ### Requirements
 
-The Pay.nl Python SDK works on Python 3.7 and is dependent on the requests package and the marshmallow package (v2.x only)
+The Pay.nl Python SDK works on Python 2 and is dependent on the requests package and the marshmallow package (v2.x only)
 When installing through pip these dependencies will automatically be detected and installed
 
 ### Internal API implementation

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="paynlsdk2",
-    version="1.0.0",
+    version="1.0.1",
     author="Ing. R.J. van Dongen",
     author_email="rogier@sebsoft.nl",
     description="PayNL2 SDK",
